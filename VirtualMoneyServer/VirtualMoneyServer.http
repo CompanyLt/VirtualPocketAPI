@@ -1,0 +1,16 @@
+@VirtualMoneyServer_HostAddress = http://localhost:5062
+
+GET {{VirtualMoneyServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+
+POST {{VirtualMoneyServer_HostAddress}}/api/parentAuthentication/registration
+Content-Type: application/json
+
+{
+  "Name": "Jonas",
+  "SurName": "Pavardenis",
+  "Email": "example@mail.ru"
+}
