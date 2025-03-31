@@ -9,11 +9,11 @@ namespace VirtualPocket.Controllers
     public class TaskController : Controller
     {
        
-        ITaskService _taskService;
+        ITaskGetService _taskService;
         ILogger<TaskController> _logger;
 
 
-        public TaskController(ITaskService taskService, ILogger<TaskController> logger) 
+        public TaskController(ITaskGetService taskService, ILogger<TaskController> logger) 
         {
             _taskService = taskService;
             _logger = logger;
@@ -51,8 +51,7 @@ namespace VirtualPocket.Controllers
 
             return Ok();
         }
-        //Uzduociu pridejimas
-
+        
 
 
     }

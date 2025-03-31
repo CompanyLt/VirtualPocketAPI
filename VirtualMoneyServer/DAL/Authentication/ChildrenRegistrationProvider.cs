@@ -1,19 +1,20 @@
 ﻿using Microsoft.Data.SqlClient;
 using VirtualPocket.DAL.Queries;
 
-namespace VirtualPocket.DAL
+namespace VirtualPocket.DAL.Authentication
 {
-    public class ChildrenConnectionService:IConnectionService
+    public class ChildrenRegistrationProvider : IConnectionService
     {
 
         private readonly IQuery _childQuery;
 
 
-        public ChildrenConnectionService([FromKeyedServices("ChildQuery")]IQuery childQuery) { 
-        
-        _childQuery = childQuery;
-        
-        
+        public ChildrenRegistrationProvider([FromKeyedServices("ChildQuery")] IQuery childQuery)
+        {
+
+            _childQuery = childQuery;
+
+
         }
 
 
@@ -40,6 +41,6 @@ namespace VirtualPocket.DAL
 
         }
 
-       
+
     }
 }

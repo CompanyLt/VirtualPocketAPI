@@ -8,7 +8,7 @@ namespace VirtualPocket.DAL.Authentication
 
         IConnectionService _connectionService;
 
-        public ChildrenLoginService([FromKeyedServices("ChildrenConnectionService")] IConnectionService connectionService) 
+        public ChildrenLoginService([FromKeyedServices("ChildrenRegistrationProvider")] IConnectionService connectionService) 
         { 
         _connectionService = connectionService;
         }

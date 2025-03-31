@@ -1,9 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using VirtualPocket.DAL.Queries;
 
-namespace VirtualPocket.DAL
+namespace VirtualPocket.DAL.Authentication
 {
-    public class ParentRegistrationProvider:IConnectionService
+    public class ParentRegistrationProvider : IConnectionService
     {
         IQuery _parentQuery;
 
@@ -34,7 +34,7 @@ namespace VirtualPocket.DAL
 
         public void SetQueryAction()
         {
-            
+
             _parentQuery.SetQueryAction("INSERT INTO ParentUser(name,password,mail,uniqueId,phoneNumber) VALUES(@name, @password, @mail, @uniqueId, @phoneNumber)");
 
         }

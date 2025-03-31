@@ -49,8 +49,8 @@ namespace VirtualPocket.Controllers
                 var errorResponse = new ErrorResponse
                 {
                     Message = "Vidinė serverio klaida",
-                    Detail = ex.Message, // Detalės iš klaidos
-                    ErrorCode = HttpContext.TraceIdentifier // Atsakymo sekos identifikatorius
+                    Detail = ex.Message, 
+                    ErrorCode = HttpContext.TraceIdentifier 
                 };
                 return StatusCode(500, errorResponse);
 

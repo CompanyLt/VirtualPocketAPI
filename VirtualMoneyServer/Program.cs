@@ -18,7 +18,7 @@ namespace VirtualPocket
             builder.Services.AddKeyedTransient<IQuery, ParentLoginQuery>("ParentLoginQuery");
             builder.Services.AddKeyedTransient<IConnectionService, ParentLoginProvider>("ParentLoginProvider");
             builder.Services.AddKeyedTransient<IConnectionService, ParentRegistrationProvider>("ParentRegistrationProvider");
-            builder.Services.AddKeyedTransient<IConnectionService, ChildrenConnectionService>("ChildrenConnectionService");
+            builder.Services.AddKeyedTransient<IConnectionService, ChildrenRegistrationProvider>("ChildrenRegistrationProvider");
             builder.Services.AddKeyedTransient<IRegistrationService, ParentRegistrationService>("ParentRegistrationService");
             builder.Services.AddKeyedTransient<ILoginService, ParentLoginService>("ParentAuthenticationService");
             builder.Services.AddKeyedTransient<ILoginService, ChildrenLoginService>("ChildrenAuthenticationService");
