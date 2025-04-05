@@ -53,7 +53,7 @@ namespace VirtualPocket.Controllers
         }
 
         [HttpPost("authentication",Name = "ChildrenAuthentication")]
-        public async Task<IActionResult> AuthenticateChildren(string userName, string password)
+        public async Task<IActionResult> AuthenticateChildren([FromBody]LoginModel loginModel)
         {
 
 

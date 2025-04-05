@@ -3,7 +3,7 @@
     public class User
     {
         public string Name { get; set; }        
-        public string UniqueId { get; set; }
+        public int UniqueId { get; set; }
 
 
 

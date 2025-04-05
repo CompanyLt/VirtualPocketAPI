@@ -15,7 +15,7 @@ namespace VirtualPocket.Model
         public string? Password { get; set; }
 
         
-        public string? uniqueId { get; set; }
+        public int uniqueId { get; set; }
 
 
     }

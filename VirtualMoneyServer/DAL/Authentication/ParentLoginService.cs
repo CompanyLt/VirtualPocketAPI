@@ -31,8 +31,8 @@ namespace VirtualPocket.DAL.Authentication
                 {
                     if (reader.Read() == true)
                     {
-                        loginModel.uniqueId = reader["uniqueId"].ToString();
-                    await    _connectionService.GetConnection().CloseAsync();
+                        loginModel.uniqueId = reader.GetOrdinal("id");
+                        await    _connectionService.GetConnection().CloseAsync();
                         return true;
 
 

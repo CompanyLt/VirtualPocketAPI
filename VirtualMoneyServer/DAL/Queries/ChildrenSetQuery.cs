@@ -2,16 +2,14 @@
 
 namespace VirtualPocket.DAL.Queries
 {
-    public class ParentRegistrationQuery : DbSettings,  IQuery
+    public class ChildrenSetQuery: DbSettings, IQuery
     {
+        string queryAction = "Select name,id FROM ChildrenUser WHERE name=@name AND password=@password";
 
-      
-
-        string query = "Select count(*) FROM ParentUser WHERE mail=@mail";
 
         SqlConnection conn;
 
-        public ParentRegistrationQuery()
+        public ChildrenSetQuery()
         {
             conn = new SqlConnection(dbConnection);
         }
@@ -32,14 +30,12 @@ namespace VirtualPocket.DAL.Queries
 
         public string GetQueryAction()
         {
-            return query;
+            return queryAction;
         }
 
         public void SetQueryAction(string action)
         {
-           query= action;
-
-          
+            queryAction = action;
         }
     }
 }

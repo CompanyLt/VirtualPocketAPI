@@ -2,15 +2,12 @@
 
 namespace VirtualPocket.DAL.Queries
 {
-    public class ParentLoginQuery:IQuery
+    public class ParentLoginQuery: DbSettings, IQuery
     {
-        string dbConnection = @"Data Source=HP-2\SQLEXPRESS;
-                                    Initial Catalog=VirtualPocket;
-                                    Integrated Security=True;
-                                    Connect Timeout=30;Encrypt=False;";
+       
 
 
-        string queryAction = "Select name,uniqueId FROM ParentUser WHERE name=@name AND password=@password";
+        string queryAction = "Select name,id FROM ParentUser WHERE name=@name AND password=@password";
 
 
         SqlConnection conn;

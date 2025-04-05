@@ -7,13 +7,13 @@ namespace VirtualPocket.DAL.Authentication
     {
 
         IConnectionService _connectionService;
-        ICartographyService _cartographyService;
+       
 
 
-        public ParentRegistrationService([FromKeyedServices("ParentRegistrationProvider")] IConnectionService connectionService,ICartographyService cartographyService)
+        public ParentRegistrationService([FromKeyedServices("ParentRegistrationProvider")] IConnectionService connectionService)
         {
             _connectionService = connectionService;
-            _cartographyService = cartographyService;
+           
         }
         public async Task<bool> SetUser(RegistrationModel registrationModel)
         {
@@ -29,14 +29,15 @@ namespace VirtualPocket.DAL.Authentication
                 _connectionService.SetQueryAction();
                 if (count_login == 0)
                 {
-                    registrationModel.uniqueId = _cartographyService.GetCartography(registrationModel.Email);
+                  //  registrationModel.uniqueId = _cartographyService.GetCartography(registrationModel.Email);
                     using (SqlCommand registration = new SqlCommand(_connectionService.GetQueryAction(), _connectionService.GetConnection()))
                     {
                        registration.Parameters.Add(new SqlParameter("@name", registrationModel.Name));
                         registration.Parameters.Add(new SqlParameter("@password", registrationModel.Password));
-                        registration.Parameters.Add(new SqlParameter("@mail", registrationModel.Email));
-                        registration.Parameters.Add(new SqlParameter("@uniqueId", registrationModel.uniqueId));
+                        registration.Parameters.Add(new SqlParameter("@mail", registrationModel.Email));                       
                         registration.Parameters.Add(new SqlParameter("@phoneNumber", "0"));
+
+
                      await   registration.ExecuteNonQueryAsync();
                     }
                     await _connectionService.GetConnection().CloseAsync();

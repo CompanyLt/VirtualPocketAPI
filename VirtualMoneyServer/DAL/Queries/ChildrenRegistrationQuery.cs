@@ -2,21 +2,15 @@
 
 namespace VirtualPocket.DAL.Queries
 {
-    public class ChildRegistrationQuery : IQuery
+    public class ChildrenRegistrationQuery :DbSettings, IQuery
     {
-
-        string dbConnection = @"Data Source=HP-2\SQLEXPRESS;
-                                    Initial Catalog=VirtualPocket;
-                                    Integrated Security=True;
-                                    Connect Timeout=30;Encrypt=False;";
 
 
         string queryAction = "Select count(*) FROM ChildrenUser WHERE email=@email";
 
-
         SqlConnection conn;
 
-        public ChildRegistrationQuery()
+        public ChildrenRegistrationQuery()
         {
             conn = new SqlConnection(dbConnection);
         }

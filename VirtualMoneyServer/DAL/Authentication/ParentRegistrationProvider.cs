@@ -35,7 +35,7 @@ namespace VirtualPocket.DAL.Authentication
         public void SetQueryAction()
         {
 
-            _parentQuery.SetQueryAction("INSERT INTO ParentUser(name,password,mail,uniqueId,phoneNumber) VALUES(@name, @password, @mail, @uniqueId, @phoneNumber)");
+            _parentQuery.SetQueryAction("INSERT INTO ParentUser(name,password,mail,phoneNumber) VALUES(@name, @password, @mail, @phoneNumber)");
 
         }
     }

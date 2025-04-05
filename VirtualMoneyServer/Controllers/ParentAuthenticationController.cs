@@ -29,13 +29,17 @@ namespace VirtualPocket.Controllers
         {
            
 
+            if(!ModelState.IsValid) {
 
+                return BadRequest(new ErrorResponse { ErrorCode = "1000", Message = "Neivesti laukai" });
+            }
 
 
             try
             {
              if(await _registrationService.SetUser(registrationModel))
                         {
+                    //Graziname User
                     return CreatedAtAction(nameof(RegistrationParent), new { mail = registrationModel.Email }, new User {Name=registrationModel.Name, UniqueId = registrationModel.uniqueId});
                 }
                 else
@@ -71,6 +75,7 @@ namespace VirtualPocket.Controllers
             {
                if(await _authenticationService.GetUser(loginModel))
                 {
+                 
                     return Ok(new User {Name=loginModel.Username,UniqueId=loginModel.uniqueId});
 
                 }

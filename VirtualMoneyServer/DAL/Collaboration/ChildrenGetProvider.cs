@@ -1,22 +1,17 @@
 ﻿using Microsoft.Data.SqlClient;
 using VirtualPocket.DAL.Queries;
 
-namespace VirtualPocket.DAL.Authentication
+namespace VirtualPocket.DAL.Collaboration
 {
-    public class ChildrenRegistrationProvider : IConnectionService
+    public class ChildrenGetProvider:IConnectionService
     {
+        IQuery _childrenQuery;
 
-        private readonly IQuery _childrenQuery;
 
-
-        public ChildrenRegistrationProvider([FromKeyedServices("ChildQuery")] IQuery childQuery)
+        public ChildrenGetProvider([FromKeyedServices("ChildrenGetQuery")] IQuery childrenGetQuery)
         {
-
-            _childrenQuery = childQuery;
-
-
+            _childrenQuery = childrenGetQuery;
         }
-
 
 
         public SqlConnection GetConnection()
@@ -36,10 +31,15 @@ namespace VirtualPocket.DAL.Authentication
             return _childrenQuery.GetQueryAction();
         }
 
+
         public void SetQueryAction()
         {
-            _childrenQuery.SetQueryAction("INSERT INTO ChildrenUser(name,password,mail,phoneNumber) VALUES(@name, @password, @mail, @phoneNumber)");
+
+            //  _parentQuery.SetQueryAction("INSERT INTO ParentUser(name,password,mail,uniqueId,phoneNumber) VALUES(@name, @password, @mail, @uniqueId, @phoneNumber)");
+
         }
+
+
 
 
     }

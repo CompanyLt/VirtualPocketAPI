@@ -3,20 +3,15 @@ using VirtualPocket.DAL.Queries;
 
 namespace VirtualPocket.DAL.Authentication
 {
-    public class ChildrenRegistrationProvider : IConnectionService
+    public class ChildrenLoginProvider:IConnectionService
     {
+        IQuery _childrenQuery;
 
-        private readonly IQuery _childrenQuery;
 
-
-        public ChildrenRegistrationProvider([FromKeyedServices("ChildQuery")] IQuery childQuery)
+        public ChildrenLoginProvider([FromKeyedServices("ParentLoginQuery")] IQuery parentQuery)
         {
-
-            _childrenQuery = childQuery;
-
-
+            _childrenQuery = parentQuery;
         }
-
 
 
         public SqlConnection GetConnection()
@@ -36,11 +31,12 @@ namespace VirtualPocket.DAL.Authentication
             return _childrenQuery.GetQueryAction();
         }
 
+
         public void SetQueryAction()
         {
-            _childrenQuery.SetQueryAction("INSERT INTO ChildrenUser(name,password,mail,phoneNumber) VALUES(@name, @password, @mail, @phoneNumber)");
+
+          //  _childrenQuery.SetQueryAction("Select id,name,email From ChildrenUser Where name=@userName AND password=@password");
+
         }
-
-
     }
 }

@@ -2,13 +2,10 @@
 
 namespace VirtualPocket.DAL.Queries
 {
-    public class ChildrenTaskGetQuery:IQuery
+    public class ChildrenTaskGetQuery: DbSettings,IQuery
     {
 
-        string dbConnection = @"Data Source=HP-2\SQLEXPRESS;
-                                    Initial Catalog=VirtualPocket;
-                                    Integrated Security=True;
-                                    Connect Timeout=30;Encrypt=False;";
+        
 
 
         string queryAction = "Select count(*) FROM ChildrenUser WHERE email=@email";

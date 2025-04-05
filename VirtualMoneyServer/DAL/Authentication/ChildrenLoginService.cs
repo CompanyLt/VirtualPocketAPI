@@ -18,16 +18,37 @@ namespace VirtualPocket.DAL.Authentication
         public async Task<bool> GetUser(LoginModel loginModel)
         {
             await _connectionService.GetConnection().OpenAsync();
-            using(SqlCommand command = new SqlCommand(_connectionService.GetQueryAction(),_connectionService.GetConnection()))
+            using (SqlCommand command = new SqlCommand(_connectionService.GetQueryAction(), _connectionService.GetConnection()))
             {
 
+                command.Parameters.Add(new SqlParameter("@name", loginModel.Username));
+                command.Parameters.Add(new SqlParameter("@password", loginModel.Password));
+
+
+                using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                {
+                    if (reader.Read() == true)
+                    {
+                        loginModel.uniqueId = reader.GetOrdinal("id");
+                        await _connectionService.GetConnection().CloseAsync();
+                        return true;
+
+
+                    }
+                    else
+                    {
+                        await _connectionService.GetConnection().CloseAsync();
+                        return false;
+                    }
+
+                }
 
 
 
 
 
             }
-            return true;
+
         }
     }
 }

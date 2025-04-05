@@ -1,17 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 namespace VirtualPocket.DAL.Queries
 {
-    public class ParentRegistrationQuery : DbSettings,  IQuery
+    public class ChildrenLoginQuery:DbSettings,IQuery
     {
 
-      
 
-        string query = "Select count(*) FROM ParentUser WHERE mail=@mail";
+        string queryAction = "Select name,id FROM ChildrenUser WHERE name=@name AND password=@password";
+
 
         SqlConnection conn;
 
-        public ParentRegistrationQuery()
+        public ChildrenLoginQuery()
         {
             conn = new SqlConnection(dbConnection);
         }
@@ -32,14 +33,13 @@ namespace VirtualPocket.DAL.Queries
 
         public string GetQueryAction()
         {
-            return query;
+            return queryAction;
         }
 
         public void SetQueryAction(string action)
         {
-           query= action;
-
-          
+            queryAction = action;
         }
+
     }
 }
