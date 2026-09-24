@@ -8,7 +8,7 @@ namespace VirtualPocket.DAL.Authentication
         IQuery _childrenQuery;
 
 
-        public ChildrenLoginProvider([FromKeyedServices("ParentLoginQuery")] IQuery parentQuery)
+        public ChildrenLoginProvider([FromKeyedServices("ChildrenLoginQuery")] IQuery parentQuery)
         {
             _childrenQuery = parentQuery;
         }

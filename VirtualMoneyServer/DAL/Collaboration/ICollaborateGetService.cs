@@ -1,9 +1,11 @@
-﻿namespace VirtualPocket.DAL.Collaboration
+﻿using VirtualPocket.Model;
+
+namespace VirtualPocket.DAL.Collaboration
 {
     public interface ICollaborateGetService
     {
 
 
-        Task<IEnumerable<int>> GetCollaborate(int parentId);
+        Task<IEnumerable<User>> GetCollaborate(int parentId);
     }
 }

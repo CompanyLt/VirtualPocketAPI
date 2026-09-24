@@ -9,7 +9,7 @@ namespace VirtualPocket.DAL.Tasks
         
 
 
-       Task <IEnumerable<TaskForm>> GetTask(string uniqueId);
+       Task <IEnumerable<TaskForm>> GetTasks(int uniqueId);
 
 
 

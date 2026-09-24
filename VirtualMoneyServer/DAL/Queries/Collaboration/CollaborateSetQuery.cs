@@ -1,15 +1,23 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.Collaboration
 {
-    public class ChildrenGetQuery: DbSettings, IQuery
+    public class CollaborateSetQuery : DbSettings, IQuery
     {
-        string queryAction = "Select name,id FROM ChildrenUser WHERE name=@name AND password=@password";
+        string queryAction = @"
+            SELECT * FROM ChildrenUser WHERE id=@id             
+            AND NOT EXISTS(
+               SELECT 1 FROM Collaborate WHERE childrenId=@id
+                    )
+         
+
+
+ ";
 
 
         SqlConnection conn;
 
-        public ChildrenGetQuery()
+        public CollaborateSetQuery()
         {
             conn = new SqlConnection(dbConnection);
         }

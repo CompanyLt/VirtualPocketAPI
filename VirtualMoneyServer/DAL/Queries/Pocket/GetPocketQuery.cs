@@ -1,18 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.Pocket
 {
-    public class ChildrenTaskSetQuery: DbSettings, IQuery
+    public class GetPocketQuery:DbSettings,IQuery
     {
-       
 
-
-        string queryAction = "Select count(*) FROM ChildrenUser WHERE email=@email";
+        string queryAction = "SELECT id,balance FROM Pocket WHERE childrenId=@id";
 
 
         SqlConnection conn;
 
-        public ChildrenTaskSetQuery()
+        public GetPocketQuery()
         {
             conn = new SqlConnection(dbConnection);
         }

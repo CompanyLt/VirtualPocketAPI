@@ -1,16 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.Market
 {
-    public class ChildrenRegistrationQuery :DbSettings, IQuery
+    public class ChildrenMarketSetQuery: DbSettings, IQuery
     {
 
 
-        string queryAction = "Select count(*) FROM ChildrenUser WHERE email=@email";
+        string queryAction = @"INSERT INTO Market (title, description, price, category, assign, status) 
+                      VALUES (@title, @description, @price, @category, @assign, @status)";
+
 
         SqlConnection conn;
 
-        public ChildrenRegistrationQuery()
+        public ChildrenMarketSetQuery()
         {
             conn = new SqlConnection(dbConnection);
         }
@@ -38,6 +40,7 @@ namespace VirtualPocket.DAL.Queries
         {
             queryAction = action;
         }
+
 
     }
 }

@@ -1,18 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.Authentication
 {
-    public class ParentLoginQuery: DbSettings, IQuery
+    public class ChildrenLoginQuery : DbSettings, IQuery
     {
-       
 
 
-        string queryAction = "Select name,id FROM ParentUser WHERE name=@name AND password=@password";
+        string queryAction = "Select name,username,id,avatar FROM ChildrenUser WHERE username=@username AND password=@password";
 
 
         SqlConnection conn;
 
-        public ParentLoginQuery()
+        public ChildrenLoginQuery()
         {
             conn = new SqlConnection(dbConnection);
         }

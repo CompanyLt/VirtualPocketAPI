@@ -1,19 +1,19 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.Tasks
 {
-    public class ChildrenTaskGetQuery: DbSettings,IQuery
+    public class TaskCategoryGetQuery : DbSettings, IQuery
     {
 
-        
 
 
-        string queryAction = "Select count(*) FROM ChildrenUser WHERE email=@email";
+
+        string queryAction = @"Select id,name,image from TaskCategory";
 
 
         SqlConnection conn;
 
-        public ChildrenTaskGetQuery()
+        public TaskCategoryGetQuery()
         {
             conn = new SqlConnection(dbConnection);
         }
@@ -41,5 +41,6 @@ namespace VirtualPocket.DAL.Queries
         {
             queryAction = action;
         }
+    
     }
 }

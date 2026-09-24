@@ -8,6 +8,6 @@ namespace VirtualPocket.DAL.Market
 
 
 
-        Task<bool> SetPurchase(Product product);
+        Task<bool> SetPurchase(ProductSetForm product);
     }
 }

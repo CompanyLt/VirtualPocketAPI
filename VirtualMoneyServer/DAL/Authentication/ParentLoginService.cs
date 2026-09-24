@@ -23,7 +23,7 @@ namespace VirtualPocket.DAL.Authentication
             using(SqlCommand command = new SqlCommand(_connectionService.GetQueryAction(), _connectionService.GetConnection()))
             {
 
-                command.Parameters.Add(new SqlParameter("@name", loginModel.Username));
+                command.Parameters.Add(new SqlParameter("@username", loginModel.Username));
                 command.Parameters.Add(new SqlParameter("@password", loginModel.Password));
 
 
@@ -31,7 +31,9 @@ namespace VirtualPocket.DAL.Authentication
                 {
                     if (reader.Read() == true)
                     {
-                        loginModel.uniqueId = reader.GetOrdinal("id");
+                        loginModel.uniqueId = reader.GetInt32(reader.GetOrdinal("id"));
+                        loginModel.Name = reader["name"].ToString();
+                        loginModel.Username = reader["username"].ToString();
                         await    _connectionService.GetConnection().CloseAsync();
                         return true;
 

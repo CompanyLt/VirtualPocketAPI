@@ -1,17 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.ApiCenter
 {
-    public class ParentRegistrationQuery : DbSettings,  IQuery
+    public class GetApiCommandsQuery:DbSettings,IQuery
     {
+        string queryAction = "SELECT * FROM ApiCommands WHERE Id=@apiKey";
 
-      
-
-        string query = "Select count(*) FROM ParentUser WHERE mail=@mail";
 
         SqlConnection conn;
 
-        public ParentRegistrationQuery()
+        public GetApiCommandsQuery()
         {
             conn = new SqlConnection(dbConnection);
         }
@@ -32,14 +31,12 @@ namespace VirtualPocket.DAL.Queries
 
         public string GetQueryAction()
         {
-            return query;
+            return queryAction;
         }
 
         public void SetQueryAction(string action)
         {
-           query= action;
-
-          
+            queryAction = action;
         }
     }
 }

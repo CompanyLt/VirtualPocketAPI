@@ -21,11 +21,13 @@ namespace VirtualPocket.DAL.Authentication
             await _connectionService.GetConnection().OpenAsync();
             using (SqlCommand command = new SqlCommand(_connectionService.GetQueryAction(), _connectionService.GetConnection()))
             {
-                command.Parameters.Add(new SqlParameter("@mail", registrationModel.Email));
+                command.Parameters.Add(new SqlParameter("@email", registrationModel.Email));
+                command.Parameters.Add(new SqlParameter("@username", registrationModel.Username));
                 int count_login = (int)command.ExecuteScalar();
 
 
                 //Console.WriteLine($"patikra {count_login.ToString()}");
+                //Pakeiciame query
                 _connectionService.SetQueryAction();
                 if (count_login == 0)
                 {
@@ -33,12 +35,14 @@ namespace VirtualPocket.DAL.Authentication
                     using (SqlCommand registration = new SqlCommand(_connectionService.GetQueryAction(), _connectionService.GetConnection()))
                     {
                        registration.Parameters.Add(new SqlParameter("@name", registrationModel.Name));
+                        registration.Parameters.Add(new SqlParameter("@surename", registrationModel.Surname));
+                        registration.Parameters.Add(new SqlParameter("@username", registrationModel.Username));
                         registration.Parameters.Add(new SqlParameter("@password", registrationModel.Password));
-                        registration.Parameters.Add(new SqlParameter("@mail", registrationModel.Email));                       
-                        registration.Parameters.Add(new SqlParameter("@phoneNumber", "0"));
+                        registration.Parameters.Add(new SqlParameter("@email", registrationModel.Email));                       
+                 
 
 
-                     await   registration.ExecuteNonQueryAsync();
+                    registrationModel.uniqueId = Convert.ToInt32(await registration.ExecuteScalarAsync());
                     }
                     await _connectionService.GetConnection().CloseAsync();
                     return true;

@@ -1,15 +1,17 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.Authentication
 {
-    public class ChildrenSetQuery: DbSettings, IQuery
+    public class ParentRegistrationQuery : DbSettings, IQuery
     {
-        string queryAction = "Select name,id FROM ChildrenUser WHERE name=@name AND password=@password";
 
+
+
+        string query = "SELECT CASE WHEN EXISTS(Select 1 FROM ParentUser WHERE mail=@email AND username=@username) OR EXISTS(SELECT 1 FROM ChildrenUser WHERE email=@email AND AND username=@username) THEN 1 ELSE 0 END";
 
         SqlConnection conn;
 
-        public ChildrenSetQuery()
+        public ParentRegistrationQuery()
         {
             conn = new SqlConnection(dbConnection);
         }
@@ -30,12 +32,14 @@ namespace VirtualPocket.DAL.Queries
 
         public string GetQueryAction()
         {
-            return queryAction;
+            return query;
         }
 
         public void SetQueryAction(string action)
         {
-            queryAction = action;
+            query = action;
+
+
         }
     }
 }

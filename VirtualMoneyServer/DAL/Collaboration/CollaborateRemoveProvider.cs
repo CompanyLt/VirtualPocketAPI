@@ -3,12 +3,12 @@ using VirtualPocket.DAL.Queries;
 
 namespace VirtualPocket.DAL.Collaboration
 {
-    public class ChildrenSetProvider:IConnectionService
+    public class CollaborateRemoveProvider:IConnectionService
     {
         IQuery _childrenQuery;
 
 
-        public ChildrenSetProvider([FromKeyedServices("ChildrenSetQuery")] IQuery childrenGetQuery)
+        public CollaborateRemoveProvider([FromKeyedServices("CollaborateRemoveQuery")] IQuery childrenGetQuery)
         {
             _childrenQuery = childrenGetQuery;
         }

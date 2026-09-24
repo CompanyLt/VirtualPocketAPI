@@ -9,7 +9,7 @@ namespace VirtualPocket.DAL.Authentication
         private readonly IQuery _childrenQuery;
 
 
-        public ChildrenRegistrationProvider([FromKeyedServices("ChildQuery")] IQuery childQuery)
+        public ChildrenRegistrationProvider([FromKeyedServices("ChildrenRegistrationQuery")] IQuery childQuery)
         {
 
             _childrenQuery = childQuery;
@@ -38,7 +38,7 @@ namespace VirtualPocket.DAL.Authentication
 
         public void SetQueryAction()
         {
-            _childrenQuery.SetQueryAction("INSERT INTO ChildrenUser(name,password,mail,phoneNumber) VALUES(@name, @password, @mail, @phoneNumber)");
+            _childrenQuery.SetQueryAction("INSERT INTO ChildrenUser(name,surename,username,password,email) OUTPUT INSERTED.id VALUES(@name,@surename,@username, @password, @email)");
         }
 
 

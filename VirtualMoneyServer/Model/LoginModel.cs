@@ -17,5 +17,10 @@ namespace VirtualPocket.Model
 
 
         public int uniqueId { get; set; }
+
+        public string? Name { get; set; }
+        public bool isParent {  get; set; }
+
+        public string? avatar { get; set; }
     }
 }

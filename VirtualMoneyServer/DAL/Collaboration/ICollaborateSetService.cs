@@ -1,8 +1,10 @@
-﻿namespace VirtualPocket.DAL.Collaboration
+﻿using VirtualPocket.Model;
+
+namespace VirtualPocket.DAL.Collaboration
 {
     public interface ICollaborateSetService
     {
 
-        Task<bool> SetCollaborate(int parentId, int childrenId);
+        Task<User> SetCollaborate(int parentId, int childrenId);
     }
 }

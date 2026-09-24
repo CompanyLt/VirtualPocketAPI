@@ -1,18 +1,20 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data.Common;
 
-namespace VirtualPocket.DAL.Queries
+namespace VirtualPocket.DAL.Queries.Tasks
 {
-    public class ChildrenLoginQuery:DbSettings,IQuery
+    public class StartTaskStatusQuery:DbSettings,IQuery
     {
 
 
-        string queryAction = "Select name,id FROM ChildrenUser WHERE name=@name AND password=@password";
+
+        string queryAction = "UPDATE Tasks SET status=@status WHERE id=@id";
+   
 
 
         SqlConnection conn;
 
-        public ChildrenLoginQuery()
+        public StartTaskStatusQuery()
         {
             conn = new SqlConnection(dbConnection);
         }
@@ -40,6 +42,5 @@ namespace VirtualPocket.DAL.Queries
         {
             queryAction = action;
         }
-
     }
 }

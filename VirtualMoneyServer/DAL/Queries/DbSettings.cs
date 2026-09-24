@@ -1,4 +1,6 @@
-﻿namespace VirtualPocket.DAL.Queries
+﻿using System.Data;
+
+namespace VirtualPocket.DAL.Queries
 {
     public class DbSettings
     {
